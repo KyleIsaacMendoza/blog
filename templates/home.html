@@ -1,0 +1,35 @@
+<!-- templates/home.html -->
+
+{% extends "base.html" %}
+<!-- start of block content -->
+{% block content%}
+
+<!--todo:  post_list comes from ListView and contains all the object in our view of the model Post   -->
+{% for post in post_list%}
+
+<div class="post-entry">
+  <h2>
+    <!-- display title -->
+    <a href="{% url 'post_detail' post.pk %}">{{post.title}}</a>
+    <!--* last is to pass the URL to 'post_detail' which is the name of the path that also expect a primary key and passing the post.primary key to know what post it will go -->
+  </h2>
+  <p>{{post.body}}</p>
+  <!-- display body -->
+</div>
+
+{% endfor %}
+<!--* end of for -->
+{% endblock content%}
+<!--* end of block -->
+
+<!-- !next is to design or create static files for CSS, JavaScript -->
+<!-- create a static FILE then look for static url inside the 
+django_project/settings.py
+
+looks like this:
+STATIC_URL = "static/"
+-->
+
+<!-- after everthing is done.
+!Time for Testing
+-->

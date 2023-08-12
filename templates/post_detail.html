@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+<!-- extends the base.html we created to inherit the static and layout -->
+
+{% block content%}
+<!-- beginning  -->
+<div class="post-entry">
+  <!--? DetailView makes accessible as post -->
+  <h2>{{post.title}}</h2>
+  <p>{{post.body}}</p>
+</div>
+
+{% endblock content%}
+
+<!-- * Our Context object from DetailView is either our model name post or object we could also update our template as follows and it would work exactly the same.
+
+<h2> {{ object.title }}</h2>
+<p>  {{ object.body }}</p>
+
+
+-->
+
+<!-- after this we add a new URL path for our new VIEW  -->
