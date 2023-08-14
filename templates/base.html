@@ -19,14 +19,38 @@
   </head>
   <body>
     <header>
-      <h1>
-        <a href="{% url 'home' %}">Django Blog</a>
-      </h1>
+      <!-- update for a new view -->
+      <div class="nav-left">
+        <!-- new-->
+        <h1>
+          <a href="{% url 'home' %}">Django Blog</a>
+        </h1>
+      </div>
+      <div class="nav-right">
+        <!-- new-->
+        <h1>
+          <a href="{% url 'post_new' %}">+ New Blog Post</a>
+        </h1>
+      </div>
     </header>
-    <div>
-      {% block content%}
-      <!-- future content -->
-      {% endblock content%}
-    </div>
+    <!-- logic if the user successed on logging in or not -->
+    {% if user.is_authenticated %}
+    <p>Hi {{ user.username }}</p>
+    <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+    <p>You are not logged in.</p>
+    <a href="{% url 'login' %}">Login</a> |
+    <!-- Adding new link for sign up -->
+    <a href="{% url 'signup' %}">Sign Up</a>
+    {% endif %}
+    <!-- endofif -->
+    {% block content%}
+    <!-- future content -->
+    {% endblock content%}
   </body>
 </html>
+
+<!-- after updating a new template, let's add a new URL(url.py) for post_new
+import a BlogCreateView (our CBV)that is not created YET. then add a URL path for post/new/ and give it a name of post_new -->
+
+<!-- after adding user authentication in login lets now add Logout link -->

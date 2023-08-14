@@ -8,9 +8,17 @@ from .views import BlogListView  # BlogListView is the CBV we created from blog/
 
 # new import from view the part 2
 from .views import BlogDetailView
+from .views import BlogCreateView  # new pt3
+from .views import BlogUpdateView
+from .views import BlogDeleteView
+
 
 urlpatterns = [
-    path("post/<int:pk>/", BlogDetailView.as_view(), name="post_detail"),
+    # for delete
+    path("post/<int:pk>/delete/", BlogDeleteView.as_view(), name="post_delete"),
+    path("post/<int:pk>/edit/", BlogUpdateView.as_view(), name="post_edit"),  # edit
+    path("post/new/", BlogCreateView.as_view(), name="post_new"),  # create
+    path("post/<int:pk>/", BlogDetailView.as_view(), name="post_detail"),  # view
     path("", BlogListView.as_view(), name="home"),
 ]
 

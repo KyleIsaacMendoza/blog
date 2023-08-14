@@ -20,6 +20,11 @@ from django.urls import include  # new
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("blog.urls")),  # include the urls inside blog (blog.urls)
+    # for user authentication (or login, logout feature)
+    path("accounts/", include("django.contrib.auth.urls")),  # new
+    # for sign up accounts
+    path("accounts/", include("accounts.urls")),  # new
+    # next is to create the urls.py inside the accounts app
 ]
 
 

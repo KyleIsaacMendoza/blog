@@ -1,0 +1,21 @@
+<!-- template/post_edit.html -->
+
+{% extends "base.html"%}
+
+<!-- start -->
+
+{% block content%}
+<h1>Edit post</h1>
+<form action="" method="post">
+  {% csrf_token %}
+  <!-- token IS A MUST -->
+
+  {{ form.as_p }}
+
+  <input type="submit" value="Update" />
+</form>
+{% endblock content%}
+
+<!-- after everything is done.
+let's create a Delete View 
+and again, create/update a template, create CBV and last is add it to URL.py -->

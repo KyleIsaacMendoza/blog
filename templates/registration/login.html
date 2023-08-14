@@ -1,0 +1,23 @@
+<!-- templates/registration/login.html -->
+{% extends "base.html" %}
+
+<!-- start -->
+{% block content %}
+<h2>Login</h2>
+<form action="" method="post">
+  {% csrf_token %}
+  <!-- token is A MUST -->
+  {{form.as_p}}
+
+  <button type="submit">Login</button>
+</form>
+{% endblock content%}
+
+<!-- final step is we need to specify where to redirect the user upon successful login. 
+    * set this with the LOGIN_REDIRECT_URL = "URL" in setting.py
+    * after that, let's update our base.html so we display message to user whether they are logged in or not. We can use the is_authenticated attribute for this.
+    * after updating templates for link in login and logout let's add a Sign up, 
+    ?creating a dedicated new app for accounts, for our sign up page
+    todo: but we need to create a new app for accounts feature and create everthing like editing installed_apps, views, urls, template again.
+    
+-->

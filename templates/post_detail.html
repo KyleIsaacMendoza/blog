@@ -9,6 +9,11 @@
   <p>{{post.body}}</p>
 </div>
 
+<!-- Link to edit our post -->
+<p><a href="{% url 'post_edit' post.pk %}"> + Edit Blog Post</a></p>
+<p>
+  <a href="{% url 'post_delete' post.pk%}"> + Delete Blog Post</a>
+</p>
 {% endblock content%}
 
 <!-- * Our Context object from DetailView is either our model name post or object we could also update our template as follows and it would work exactly the same.

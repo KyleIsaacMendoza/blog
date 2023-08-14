@@ -50,5 +50,45 @@ class BlogTests(TestCase):
         self.assertContains(response, "A good title")
         self.assertTemplateUsed(response, "post_detail.html")
 
+    # new Test for post createview, updateview, deleteview
 
-# after creating test lets go to git
+    def test_post_createview(self):  # new
+        response = self.client.post(
+            reverse("post_new"),
+            {
+                "title": "New title",
+                "body": "New text",
+                "author": self.user.id,
+            },
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Post.objects.last().title, "New title")
+        self.assertEqual(Post.objects.last().body, "New text")
+
+    def test_post_updateview(self):  # new
+        response = self.client.post(
+            reverse("post_edit", args="1"),
+            {
+                "title": "Updated title",
+                "body": "Updated text",
+            },
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Post.objects.last().title, "Updated title")
+        self.assertEqual(Post.objects.last().body, "Updated text")
+
+    def test_post_deleteview(self):  # new
+        response = self.client.post(reverse("post_delete", args="1"))
+        self.assertEqual(response.status_code, 302)
+
+
+# after creating test lets go to git and commit any changes and update
+
+
+# now chapter 6, lets create form to add, edit, or delete without going to admin django
+
+# let's create a new view
+# to start, lets update our base template to display a link to a page for entering a new blog posts. It will take the form
+# * <a href="{% url 'post_new' %}"></a> where post_new is the name of our URL.

@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # input the app you created
     "blog.apps.BlogConfig",  # new
+    # for our accounts
+    "accounts.apps.AccountsConfig",  # new
+    # next is our urls.py
 ]
 
 MIDDLEWARE = [
@@ -121,6 +124,11 @@ STATIC_URL = "static/"
 #! configuring STATICFILES_DIRS for our newly created static
 STATICFILES_DIRS = [BASE_DIR / "static"]  # new ( like this)
 # next is to create a CSS directory within static
+
+#! for redirecting successful login
+LOGIN_REDIRECT_URL = "home"  # new (if login is correct should redirect to homepage)
+#! for redirecting in logout
+LOGOUT_REDIRECT_URL = "home"  # new  if we logout we go to homepage instead of page that has our welcome username!
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

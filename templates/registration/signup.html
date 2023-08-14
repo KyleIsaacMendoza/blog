@@ -1,0 +1,15 @@
+<!-- templates/registration/signup.html -->
+{% extends "base.html" %}
+
+<!-- start -->
+{% block content%}
+<h2>Sign Up</h2>
+<form action="" method="post">
+  {% csrf_token %}
+  <!-- token is a MUST -->
+  {{ form.as_p}}
+  <button type="submit">Sign up</button>
+</form>
+{% endblock content%}
+
+<!-- After this is done, edit your LINKS url so they can go to signup form -->

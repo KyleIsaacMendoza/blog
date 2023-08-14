@@ -1,0 +1,23 @@
+<!-- template/post_new.html -->
+{% extends "base.html"%}
+
+<!-- start -->
+{% block content %}
+<h1>New Post</h1>
+<form action="" method="post">
+  <!--method = POST sending data,method= GET receiving data-->
+  {% csrf_token %}
+  <!-- csrf_token for security of cross-site request forgery 
+    !MUST USE -->
+
+  {{ form.as_p}}
+  <!-- Output our form data, which render the specified fields within paragraph -->
+
+  <input type="submit" value="Save" />
+</form>
+{% endblock content%}
+
+<!-- This will create a new data (title,author,body) -->
+
+<!-- !NEXT is Updating View -->
+<!-- again create a new/update a template, a new CBV, update the url -->
