@@ -25,7 +25,8 @@ SECRET_KEY = "django-insecure-+ba(#tg#8@i23xm&#okyq-o^!&lise_#rk_7s_^i(vb$h4x-c2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# always update host if you will go on production (heroku)
+ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]  # new
 
 
 # Application definition
@@ -36,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "whitenoise.runserver_nostatic",  # new for staticfiles (whitenoise)
     "django.contrib.staticfiles",
     # input the app you created
     "blog.apps.BlogConfig",  # new
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # new for WhiteNoise
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -125,10 +128,23 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]  # new ( like this)
 # next is to create a CSS directory within static
 
+# ? Bringing Static Files to Production
+# By STATIC_ROOT config which is absolute location of these collected files, to a folder called static files.
+# and Third, STATIFILES_STORAGE, which is the file storage engine used by collectstatic.
+STATIC_ROOT = BASE_DIR / "staticfiles"  # new
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"  # new, update change to white noise
+
+# after running python manage.py collectstatic
+# you will see a new folder named staticfiles with admin & css inside it.
+# there are multiple ways to serve these compiled static files in product. the #*MOST COMMON approach-and the one we will use is
+# !WhiteNoise
+
+
 #! for redirecting successful login
 LOGIN_REDIRECT_URL = "home"  # new (if login is correct should redirect to homepage)
 #! for redirecting in logout
 LOGOUT_REDIRECT_URL = "home"  # new  if we logout we go to homepage instead of page that has our welcome username!
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
